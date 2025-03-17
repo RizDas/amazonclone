@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import "./Header.css";
+import "./Components.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function Header() {
   return (
     <Nav>
-      <Logo>
-        <img className="header_logo" src="/images/alogo.png" alt="amazonlogo" />
+      <Logo href="/">
+        <img src="/images/alogo.png" alt="amazonlogo" />
       </Logo>
 
       <SearchB>
-        <SearchI className="header_searchInput" type="text" />
+        <SearchI type="text" />
         <SearchIcon className="header_searchIcon" />
       </SearchB>
 
@@ -47,7 +47,7 @@ const Nav = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #131921;
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -60,8 +60,8 @@ const Logo = styled.a`
   padding: 0;
   width: 80px;
   margin-top: 12px;
-  margin-right: 40px;
-  margin-left: 12px;
+  margin-right: 20px;
+  margin-left: 15px;
   max-height: 70px;
   font-size: 0;
   display: inline-block;
@@ -72,6 +72,13 @@ const Logo = styled.a`
     display: block;
     width: 120%;
   }
+
+  @media only screen and (max-width: 480px) {
+    img {
+      display: block;
+      width: 90%;
+    }
+  }
 `;
 
 const SearchB = styled.div`
@@ -80,6 +87,7 @@ const SearchB = styled.div`
   align-items: center;
   border-radius: 24px;
   margin-right: 10px;
+  margin-left: 24px;
 `;
 
 const SearchI = styled.input`
@@ -87,6 +95,8 @@ const SearchI = styled.input`
   padding: 10px;
   border: none;
   width: 100%;
+  min-width: 4%;
+  min-height: 8px;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 `;
@@ -108,11 +118,20 @@ const OpsM = styled.div`
 
 const OLine1 = styled.span`
   font-size: 10px;
+
+  @media only screen and (max-width: 480px) {
+    font-size: 8px;
+  }
 `;
 
 const OLine2 = styled.span`
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
+
+  @media only screen and (max-width: 480px) {
+    font-size: 11px;
+    font-weight: 500;
+  }
 `;
 
 const Basket = styled.div`
