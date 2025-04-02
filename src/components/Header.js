@@ -4,15 +4,18 @@ import "./Components.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useStateValue } from "./StateProvider";
+import { Link } from "react-router";
 
 function Header() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket }] = useStateValue();
 
   return (
     <Nav>
-      <Logo href="/">
-        <img src="/images/alogo.png" alt="amazonlogo" />
-      </Logo>
+      <Link to="/">
+        <Logo>
+          <img src="/images/alogo.png" alt="amazonlogo" />
+        </Logo>
+      </Link>
 
       <SearchB>
         <SearchI type="text" />
@@ -35,10 +38,12 @@ function Header() {
           <OLine2>Prime</OLine2>
         </OpsM>
 
-        <Basket href="/checkout">
-          <ShoppingCartIcon className="header_cart" />
-          <Cartcount>{basket?.length}</Cartcount>
-        </Basket>
+        <Link to="/checkout">
+          <Cart>
+            <ShoppingCartIcon className="header_cart" />
+            <Cartcount>{basket?.length}</Cartcount>
+          </Cart>
+        </Link>
       </HNav>
     </Nav>
   );
@@ -59,7 +64,7 @@ const Nav = styled.div`
   letter-spacing: 1px;
 `;
 
-const Logo = styled.a`
+const Logo = styled.div`
   padding: 0;
   width: 80px;
   margin-top: 12px;
@@ -137,7 +142,7 @@ const OLine2 = styled.span`
   }
 `;
 
-const Basket = styled.a`
+const Cart = styled.div`
   display: flex;
   align-items: center;
   color: white;

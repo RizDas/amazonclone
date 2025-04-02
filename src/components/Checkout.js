@@ -2,15 +2,28 @@ import React from "react";
 import "./Components.css";
 import styled from "styled-components";
 import SubTotal from "./SubTotal";
+import { useStateValue } from "./StateProvider";
+import CheckoutProduct from "./CheckoutProduct";
 
 function Checkout() {
+  const [{ basket }] = useStateValue();
+
   return (
     <Container>
       <Left>
         <Ad src="/images/ad.jpg" alt="Checkout_Advertisement" />
-        <AdTitle>
+        <COTitle>
           <h2>Your Shopping Cart</h2>
-        </AdTitle>
+        </COTitle>
+        {basket.map((item) => (
+          <CheckoutProduct
+            id={item.id}
+            image={item.image}
+            title={item.title}
+            price={item.price}
+            rating={item.rating}
+          />
+        ))}
       </Left>
 
       <Right>
@@ -34,10 +47,10 @@ const Ad = styled.img`
   margin-bottom: 10px;
 `;
 
-const AdTitle = styled.div`
+const COTitle = styled.div`
   margin-right: 10px;
   padding: 10px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 2px solid lightgray;
 `;
 
 const Right = styled.div``;

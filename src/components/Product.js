@@ -7,15 +7,14 @@ import { useStateValue } from "./StateProvider";
 function Product({ id, title, priceB, priceS, rating, image }) {
   const [{ basket }, dispatch] = useStateValue();
 
-  console.log("Basket", basket);
-  const addtoBasket = () => {
+  console.log("Cart", basket);
+  const addtoCart = () => {
     dispatch({
-      type: "ADD_TO_BASKET",
+      type: "ADD_TO_CART",
       item: {
         id: id,
         title: title,
-        priceB: priceB,
-        priceS: priceS,
+        price: priceB,
         rating: rating,
         image: image,
       },
@@ -29,7 +28,7 @@ function Product({ id, title, priceB, priceS, rating, image }) {
         <Price>
           <small>₹ </small>
           <strong>{priceB}</strong>
-          <small>.{priceS}</small>
+          <Disc>{priceS}</Disc>
         </Price>
         <Rating>
           {Array(rating)
@@ -42,7 +41,7 @@ function Product({ id, title, priceB, priceS, rating, image }) {
 
       <img src={image} alt="ProductImg" />
 
-      <button onClick={addtoBasket}>Add to Cart</button>
+      <button onClick={addtoCart}>Add to Cart</button>
     </Container>
   );
 }
@@ -94,6 +93,11 @@ const InfoP = styled.div`
 
 const Price = styled.p`
   margin-top: 5px;
+`;
+
+const Disc = styled.small`
+  text-decoration: line-through;
+  margin-left: 5px;
 `;
 
 const Rating = styled.div`
