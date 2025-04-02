@@ -2,8 +2,26 @@ import styled from "styled-components";
 import React from "react";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import "./Components.css";
+import { useStateValue } from "./StateProvider";
 
-function Product({ title, priceB, priceS, rating, image }) {
+function Product({ id, title, priceB, priceS, rating, image }) {
+  const [{ basket }, dispatch] = useStateValue();
+
+  console.log("Basket", basket);
+  const addtoBasket = () => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id: id,
+        title: title,
+        priceB: priceB,
+        priceS: priceS,
+        rating: rating,
+        image: image,
+      },
+    });
+  };
+
   return (
     <Container>
       <InfoP>
@@ -24,7 +42,7 @@ function Product({ title, priceB, priceS, rating, image }) {
 
       <img src={image} alt="ProductImg" />
 
-      <button>Add to Cart</button>
+      <button onClick={addtoBasket}>Add to Cart</button>
     </Container>
   );
 }
@@ -42,6 +60,10 @@ const Container = styled.div`
   background-color: white;
   z-index: 1;
 
+  @media only screen and (max-width: 575px) {
+    max-height: 500px;
+  }
+
   img {
     max-height: 200px;
     width: 100%;
@@ -56,6 +78,7 @@ const Container = styled.div`
     border-color: #a88734 #9c7e31 #846a29;
     color: #111111;
     border-radius: 2px;
+    margin-bottom: 8px;
 
     &:hover {
       background-color: #f0a14a;
@@ -63,13 +86,16 @@ const Container = styled.div`
     }
   }
 `;
+
 const InfoP = styled.div`
   height: 200px;
   margin-bottom: 15px;
 `;
+
 const Price = styled.p`
   margin-top: 5px;
 `;
+
 const Rating = styled.div`
   display: flex;
 `;

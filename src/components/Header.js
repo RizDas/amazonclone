@@ -3,8 +3,11 @@ import styled from "styled-components";
 import "./Components.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useStateValue } from "./StateProvider";
 
 function Header() {
+  const [{ basket }, dispatch] = useStateValue();
+
   return (
     <Nav>
       <Logo href="/">
@@ -32,9 +35,9 @@ function Header() {
           <OLine2>Prime</OLine2>
         </OpsM>
 
-        <Basket>
+        <Basket href="/checkout">
           <ShoppingCartIcon className="header_cart" />
-          <Cartcount>0</Cartcount>
+          <Cartcount>{basket?.length}</Cartcount>
         </Basket>
       </HNav>
     </Nav>
@@ -134,13 +137,14 @@ const OLine2 = styled.span`
   }
 `;
 
-const Basket = styled.div`
+const Basket = styled.a`
   display: flex;
   align-items: center;
   color: white;
   margin-left: 10px;
   margin-right: 5px;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 const Cartcount = styled.span`

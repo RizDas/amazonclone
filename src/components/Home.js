@@ -32,7 +32,7 @@ function Home() {
           <Product
             id="164bws4"
             title='boAt Wave Sigma 3 w/Turn-by-Turn Navigation, 2.01" HD Display, Multiple Featured Smart Watch for Men & Women(Brown Leather)'
-            priceB="1649"
+            priceB="1,649"
             priceS="60"
             rating={4}
             image="/images/P3img.png"

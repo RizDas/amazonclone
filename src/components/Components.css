@@ -6,6 +6,10 @@
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   cursor: pointer;
+
+  &:hover {
+    background-color: #f0a14a;
+  }
 }
 
 /*Product*/

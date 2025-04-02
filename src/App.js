@@ -1,25 +1,20 @@
 import "./App.css";
+import Checkout from "./components/Checkout";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <html>
-      <head>
-        <link
-          rel="icon"
-          href="https://bluejuicecomics.com/wp-content/uploads/2017/02/Amazon-icon-white.png"
-          type="image/x-icon"
-        />
-        <title>Amazon Clone</title>
-      </head>
-      <body>
-        <div className="app">
-          <Header />
-          <Home />
-        </div>
-      </body>
-    </html>
+    <div className="app">
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
