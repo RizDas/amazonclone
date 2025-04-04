@@ -5,15 +5,23 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useStateValue } from "./StateProvider";
 import { Link } from "react-router";
+import { auth } from "../firebase";
 
 function Header() {
-  const [{ basket }] = useStateValue();
+  const [{ basket, user }] = useStateValue();
+
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
 
   return (
     <Nav>
-      <Link to="/">
+      <Link to="/" className="alllinks">
         <Logo>
           <img src="/images/alogo.png" alt="amazonlogo" />
+          <p>Clone</p>
         </Logo>
       </Link>
 
@@ -23,10 +31,12 @@ function Header() {
       </SearchB>
 
       <HNav>
-        <OpsM>
-          <OLine1>Hello Guest</OLine1>
-          <OLine2>Sign In</OLine2>
-        </OpsM>
+        <Link to={!user && "/login"} className="alllinks">
+          <OpsM onClick={handleAuthentication}>
+            <OLine1>Hello {!user ? "Guest" : user.email}</OLine1>
+            <OLine2>{user ? "Sign Out" : "Sign In"}</OLine2>
+          </OpsM>
+        </Link>
 
         <OpsM>
           <OLine1>Returns</OLine1>
@@ -38,7 +48,7 @@ function Header() {
           <OLine2>Prime</OLine2>
         </OpsM>
 
-        <Link to="/checkout">
+        <Link to="/checkout" className="alllinks">
           <Cart>
             <ShoppingCartIcon className="header_cart" />
             <Cartcount>{basket?.length}</Cartcount>
@@ -69,16 +79,25 @@ const Logo = styled.div`
   width: 80px;
   margin-top: 12px;
   margin-right: 20px;
-  margin-left: 15px;
+  margin-left: 12px;
   max-height: 70px;
   font-size: 0;
   display: inline-block;
   right: auto;
   left: auto;
+  display: flex;
 
   img {
     display: block;
     width: 120%;
+  }
+
+  p {
+    color: white;
+    font-size: 8px;
+    margin-top: 12px;
+    margin-left: 3px;
+    font-weight: 600;
   }
 
   @media only screen and (max-width: 480px) {
@@ -95,7 +114,7 @@ const SearchB = styled.div`
   align-items: center;
   border-radius: 24px;
   margin-right: 10px;
-  margin-left: 24px;
+  margin-left: 36px;
 `;
 
 const SearchI = styled.input`
@@ -156,6 +175,7 @@ const Cartcount = styled.span`
   font-size: 13px;
   font-weight: 600;
   margin-left: 6px;
+  text-decoration: none;
 `;
 
 export default Header;

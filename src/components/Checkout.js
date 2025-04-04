@@ -6,13 +6,14 @@ import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
 
 function Checkout() {
-  const [{ basket }] = useStateValue();
+  const [{ basket, user }] = useStateValue();
 
   return (
     <Container>
       <Left>
         <Ad src="/images/ad.jpg" alt="Checkout_Advertisement" />
         <COTitle>
+          <h3>Hello, {user?.email}</h3>
           <h2>Your Shopping Cart</h2>
         </COTitle>
         {basket.map((item) => (
@@ -51,6 +52,11 @@ const COTitle = styled.div`
   margin-right: 10px;
   padding: 10px;
   border-bottom: 2px solid lightgray;
+
+  h3 {
+    padding-bottom: 8px;
+    font-weight: 600;
+  }
 `;
 
 const Right = styled.div``;
