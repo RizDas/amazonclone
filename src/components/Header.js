@@ -33,7 +33,13 @@ function Header() {
       <HNav>
         <Link to={!user && "/login"} className="alllinks">
           <OpsM onClick={handleAuthentication}>
-            <OLine1>Hello {!user ? "Guest" : user.email}</OLine1>
+            <OLine1>
+              Hello{" "}
+              {!user
+                ? "Guest"
+                : user.email.split("@")[0].charAt(0).toUpperCase() +
+                  user.email.split("@")[0].slice(1)}
+            </OLine1>
             <OLine2>{user ? "Sign Out" : "Sign In"}</OLine2>
           </OpsM>
         </Link>

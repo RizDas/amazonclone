@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import Product from "./Product";
+import ImgSlider from "./ImgSlider";
 
 function Home() {
   return (
     <Container>
       <Content>
-        <BGBanner src="/images/banner1.jpg" alt="Banner" />
+        {/*<BGBanner src="/images/banner1.jpg" alt="Banner" />*/}
+        <ImgSlider />
 
         <HomeRow>
           <Product
@@ -83,13 +85,13 @@ const Container = styled.div`
 
 const Content = styled.div``;
 
-const BGBanner = styled.img`
+/*const BGBanner = styled.img`
   width: 100%;
   height: auto;
   z-index: -1;
   margin-bottom: -250px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-`;
+`;*/
 
 const HomeRow = styled.div`
   display: flex;

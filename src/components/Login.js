@@ -14,6 +14,7 @@ function Login() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
+        console.log(auth);
         navigate("/");
       })
       .catch((error) => alert(error.message));

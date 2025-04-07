@@ -13,7 +13,13 @@ function Checkout() {
       <Left>
         <Ad src="/images/ad.jpg" alt="Checkout_Advertisement" />
         <COTitle>
-          <h3>Hello, {user?.email}</h3>
+          <h3>
+            Hello,{" "}
+            {!user
+              ? "Guest"
+              : user.email.split("@")[0].charAt(0).toUpperCase() +
+                user.email.split("@")[0].slice(1)}
+          </h3>
           <h2>Your Shopping Cart</h2>
         </COTitle>
         {basket.map((item) => (

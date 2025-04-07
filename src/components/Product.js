@@ -57,7 +57,13 @@ const Container = styled.div`
   max-height: 400px;
   min-width: 100px;
   background-color: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  &:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: transform 0.4s;
+  }
 
   @media only screen and (max-width: 575px) {
     max-height: 500px;
