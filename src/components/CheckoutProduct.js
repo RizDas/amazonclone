@@ -60,6 +60,14 @@ const PInfo = styled.div`
     margin-top: 10px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111111;
+
+    &:hover {
+      background-color: #f0a14a;
+      border: 1px solid white;
+      transform: scale(1.02);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
   }
 `;
 

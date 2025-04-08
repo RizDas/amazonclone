@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import { auth } from "./firebase";
 import { useStateValue } from "./components/StateProvider";
-import ImgSlider from "./components/ImgSlider";
+import Payment from "./components/Payment";
 
 function App() {
   const [{ basket }, dispatch] = useStateValue();
@@ -39,17 +39,6 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route
-            path="/"
-            element={
-              <>
-                <Header />
-                <Home />
-                <Footer />
-              </>
-            }
-          />
-
-          <Route
             path="/checkout"
             element={
               <>
@@ -60,11 +49,21 @@ function App() {
           />
 
           <Route
-            path="/testing"
+            path="/payment"
             element={
               <>
                 <Header />
-                <ImgSlider />
+                <Payment />
+              </>
+            }
+          />
+
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Home />
                 <Footer />
               </>
             }

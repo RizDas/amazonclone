@@ -88,6 +88,9 @@ const Container = styled.div`
     &:hover {
       background-color: #f0a14a;
       border: 1px solid white;
+      transform: scale(1.02);
+      transition: transform 0.2s;
+      cursor: pointer;
     }
   }
 `;
